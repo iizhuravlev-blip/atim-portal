@@ -7,3 +7,5 @@ dist/
 ~$*
 .DS_Store
 .pytest_cache/
+service/data/
+service/data/

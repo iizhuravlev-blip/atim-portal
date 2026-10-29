@@ -1,0 +1,26 @@
+# Развёртывание на mind.atimlab.ru рядом с СЭД (atim-docs) и CRM (atim-crm).
+# Портов наружу нет: HTTPS отдаёт Caddy проекта /opt/wisemapping по сети wisemapping_frontend
+# (блок upr.atimlab.ru → atim-portal:8000). Данные — в томе atim-portal-data.
+name: atim-portal
+
+services:
+  atim-portal:
+    build:
+      context: ..
+      dockerfile: service/Dockerfile
+    image: atim-portal:latest
+    container_name: atim-portal
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - atim-portal-data:/data
+    networks: [wisemapping_frontend]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 512m
+
+networks:
+  wisemapping_frontend:
+    external: true
+
+volumes:
+  atim-portal-data:

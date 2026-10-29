@@ -1,0 +1,85 @@
+/* Центральная страница: приветствие и сетка виджетов модулей. Базовые токены — atim.css (общий стиль платформы). */
+.main{min-height:100vh;min-height:100dvh}
+.nav button[disabled]{opacity:.45;cursor:default}
+.nav button[disabled]:hover{background:none;color:var(--side-fg)}
+.nav .soon{margin-left:auto;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#8079A8}
+
+.home{padding:28px 32px 48px;max-width:1440px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.hello{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.hello h1{margin:0;font:700 26px/1.2 var(--f-display);color:var(--brand)}
+.hello p{margin:4px 0 0;color:var(--muted)}
+.hello .sp{flex:1}
+.hello .upd{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+
+/* сводка: главные числа всех модулей в одну строку */
+.pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.pulse a{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--fg);transition:border-color .15s,transform .15s}
+.pulse a:hover{border-color:var(--accent);transform:translateY(-1px)}
+.pulse b{font:700 26px/1.1 var(--f-display)}
+.pulse span{font-size:12.5px;color:var(--muted)}
+.pulse a.danger b{color:var(--bad)} .pulse a.warn b{color:var(--warn)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));grid-auto-flow:dense;gap:18px;align-items:stretch}
+.w{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px;
+  min-height:228px;box-shadow:0 1px 2px rgba(30,23,72,.05),0 8px 28px rgba(30,23,72,.05);transition:box-shadow .2s,border-color .2s}
+.w:hover{box-shadow:0 2px 4px rgba(30,23,72,.06),0 14px 40px rgba(30,23,72,.09)}
+.w.wide{grid-column:span 2}
+@media (max-width:760px){.w.wide{grid-column:auto}}
+.w::after{content:"";position:absolute;inset:0 0 auto 0;height:3px;border-radius:18px 18px 0 0;background:var(--grad);opacity:.9}
+.w.stub::after,.w.pending::after{background:var(--line)}
+.w.dragging{opacity:.5}
+.w.over{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+.wh{display:flex;align-items:center;gap:10px}
+.wh .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--grad);color:#fff;flex:none;box-shadow:0 4px 14px rgba(112,71,235,.3)}
+.w.stub .wh .ic,.w.pending .wh .ic{background:var(--surface-2);color:var(--muted);box-shadow:none;border:1px solid var(--line)}
+.wh .ic svg{width:18px;height:18px}
+.wh h3{margin:0;font:700 15px var(--f-display);color:var(--fg);flex:1}
+.wh a.go{color:var(--muted);display:grid;place-items:center;width:30px;height:30px;border-radius:8px}
+.wh a.go:hover{color:var(--accent);background:var(--accent-soft)}
+.wh a.go svg{width:16px;height:16px}
+.wh .grip{cursor:grab;color:var(--muted);opacity:0;transition:opacity .15s;background:none;border:0;padding:4px}
+.w:hover .grip{opacity:.7}
+.wh .grip svg{width:16px;height:16px}
+
+.big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big b{font:700 46px/1 var(--f-display);letter-spacing:-.02em;color:var(--brand)}
+.big b.warn{color:var(--warn)} .big b.danger{color:var(--bad)} .big b.good{color:var(--ok)}
+.big span{color:var(--muted);font-size:13.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips .c{font-size:12px;padding:3px 10px;border-radius:20px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.chips .c b{color:var(--fg);font-weight:600;margin-left:3px}
+.chips a.c{text-decoration:none}
+.chips a.c:hover{border-color:var(--accent)}
+.chips .c.danger{background:var(--bad-soft);border-color:transparent;color:var(--bad)} .chips .c.danger b{color:var(--bad)}
+.chips .c.warn{background:var(--warn-soft);border-color:transparent;color:var(--warn)} .chips .c.warn b{color:var(--warn)}
+
+.rows{display:flex;flex-direction:column;margin:0 -8px}
+.rows a{display:grid;grid-template-columns:8px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px;border-radius:10px;text-decoration:none;color:var(--fg)}
+.rows a:hover{background:var(--surface-2)}
+.rows i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.rows i.danger{background:var(--bad)} .rows i.warn{background:var(--warn)} .rows i.good{background:var(--ok)} .rows i.normal{background:var(--accent);opacity:.5}
+.rows .t{min-width:0}
+.rows .t div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13.5px}
+.rows .t small{display:block;color:var(--muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rows time{font:12px var(--f-mono);color:var(--muted);white-space:nowrap}
+.rows time.danger{color:var(--bad)} .rows time.warn{color:var(--warn)}
+.rows .src{font-size:10.5px;font-weight:600;padding:1px 6px;border-radius:6px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+
+.wf{margin-top:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.wf .note{font-size:11.5px;color:var(--muted);margin-left:auto}
+.calm{display:flex;flex-direction:column;align-items:flex-start;gap:6px;color:var(--muted);font-size:13.5px;flex:1;justify-content:center}
+.calm svg{width:30px;height:30px;color:var(--ok)}
+.stubbox{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;color:var(--muted);font-size:13.5px}
+.stubbox .bars{display:flex;align-items:flex-end;gap:6px;height:56px}
+.stubbox .bars span{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--accent-soft),transparent);border:1px dashed var(--line)}
+.offline{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--warn);background:var(--warn-soft);border-radius:10px;padding:8px 10px}
+.skel{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--surface-2),var(--line),var(--surface-2));background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+
+.hiddenbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--muted)}
+.login .users{display:flex;flex-direction:column;gap:6px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .login img{filter:invert(1)!important}}
+:root[data-theme="dark"] .login img{filter:invert(1)!important}
+@media (max-width:900px){.app{grid-template-columns:1fr}.side{display:none}.home{padding:18px 16px 36px}.hello h1{font-size:22px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
