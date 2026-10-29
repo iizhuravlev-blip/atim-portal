@@ -183,7 +183,9 @@ def _combine_tasks(parts: list[dict]) -> dict:
     """Все мои задачи: поручения СЭД и задачи CRM одним списком, просроченные сверху."""
     items, overdue, today_n, offline = [], 0, 0, []
     for p, label in parts:
-        if p.get("status") in ("offline", "pending"):
+        if p.get("status") == "pending":
+            continue  # источник ещё не подключён — не ошибка
+        if p.get("status") == "offline":
             offline.append(label)
             continue
         for it in p.get("items", []):
@@ -214,6 +216,7 @@ async def widgets(u=Depends(current_user)):
             "bot.today": _fetch(client, "bot", "bot.today", uid),
             "docs.tasks": _fetch(client, "sed", "docs.tasks", uid),
             "crm.tasklist": _fetch(client, "crm", "crm.tasks", uid),
+            "bot.tasks": _fetch(client, "bot", "bot.tasks", uid),
         }
         res = dict(zip(jobs, await asyncio.gather(*jobs.values())))
     out = []
@@ -221,7 +224,7 @@ async def widgets(u=Depends(current_user)):
         if w["source"] == "stub":
             data = {"status": "stub", "message": "Модуль в разработке"}
         elif w["id"] == "tasks":
-            data = _combine_tasks([(res["docs.tasks"], "СЭД"), (res["crm.tasklist"], "CRM")])
+            data = _combine_tasks([(res["docs.tasks"], "СЭД"), (res["crm.tasklist"], "CRM"), (res["bot.tasks"], "Telegram")])
         else:
             data = res[w["id"]]
         out.append({**data, "id": w["id"], "title": w["title"], "icon": w["icon"], "wide": w.get("wide", False)})
