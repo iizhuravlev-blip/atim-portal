@@ -13,7 +13,7 @@
 | Модуль | Репозиторий / путь | Адрес, сервер |
 |---|---|---|
 | СЭД и ядро (справочники, сотрудники, роли, вход) | `C:\Users\AK\Documents\atim-docs` (`service/`, ТЗ — `docs/prompt.md`, развёртывание — `service/DEPLOY.md`) | docs.atimlab.ru, `mind` |
-| Продажи (Mind CRM) | `C:\Users\AK\Documents\atim-crm` (ТЗ — `docs/prompt.md`) | crm.atimlab.ru, `mind` |
+| Продажи (Mind CRM) | `C:\Users\AK\Documents\atim-crm` (ТЗ — `docs/prompt.md`) | mind.atimlab.ru, `mind` |
 | Групповой бот: встречи, задачи, Telegram | `C:\Users\AK\Documents\Calendar Bot\group-calendar-bot` | сервер calendar-bot |
 | ТИМ.Тендер | `C:\Users\AK\сессия\tender-search` | tender.atimlab.ru, `mind` |
 | Ретранслятор нейросетей | — | llm.atimlab.ru, сервер calendar-bot |

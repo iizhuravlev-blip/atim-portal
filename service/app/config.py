@@ -23,7 +23,7 @@ SED_API_URL = _env("SED_API_URL", SED_URL).rstrip("/")                    # ад
 SED_TOKEN = _env("SED_TOKEN")
 
 # CRM: виджет crm.tasks (PORTAL_TOKEN в .env CRM)
-CRM_URL = _env("CRM_URL", "https://crm.atimlab.ru").rstrip("/")
+CRM_URL = _env("CRM_URL", "https://mind.atimlab.ru").rstrip("/")
 CRM_API_URL = _env("CRM_API_URL", CRM_URL).rstrip("/")
 CRM_TOKEN = _env("CRM_TOKEN")
 
